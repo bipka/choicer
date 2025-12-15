@@ -1,0 +1,37 @@
+.e-d-carousel {
+  width: 100% !important;
+}
+
+/* строка списка */
+.list-action-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.list-action-item .center {
+  flex: 1;
+}
+
+/* меню при свайпе */
+.list-action-menu {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+}
+
+.list-action-menu-btn {
+  flex: 1;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #111827;
+  cursor: pointer;
+}
+
+.list-action-menu-btn-del {
+  background-color: #ef4444;
+  color: #ffffff;
+}

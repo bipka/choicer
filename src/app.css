@@ -1,0 +1,154 @@
+/* src/app.css */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f3f4f6; /* светлый фон */
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    sans-serif;
+}
+
+/* фон страницы Onsen */
+.page__background {
+  background: #f3f4f6;
+}
+
+/* тулбар */
+.toolbar,
+.toolbar--material {
+  background-color: #ffffff;
+  color: #111827;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.toolbar__center {
+  font-weight: 600;
+}
+
+/* контент */
+.page__content {
+  padding-top: 0;
+}
+
+/* элементы списка */
+.list-item,
+.list-item--material {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* --- свайп-элементы (EditDelItem) --- */
+
+.e-d-carousel {
+  width: 100% !important;
+}
+
+/* строка списка */
+.list-action-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.list-action-item .center {
+  flex: 1;
+}
+
+/* меню при свайпе */
+.list-action-menu {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+}
+
+.list-action-menu-btn {
+  flex: 1;
+  border: none;
+  padding: 8px 0;
+  font-size: 14px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #111827;
+  cursor: pointer;
+}
+
+.list-action-menu-btn-del {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+/* --- карточка с трейлером / картинкой и описанием --- */
+
+.content-details-card {
+  margin: 8px 8px 4px;
+}
+
+.content-details-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.content-details-year {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.content-details-rating {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+/* трейлер */
+.content-details-trailer {
+  margin-bottom: 8px;
+}
+
+.content-details-trailer iframe {
+  width: 100%;
+  height: 190px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* картинка-обложка */
+.content-details-image {
+  margin-bottom: 8px;
+}
+
+.content-details-image img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* текст описания */
+.content-details-description {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+/* блок с режиссёром/актёрами */
+.content-details-meta {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.content-details-label {
+  font-weight: 500;
+}
+
+/* заглушки */
+.content-details-empty {
+  font-size: 14px;
+  color: #6b7280;
+}
+/* Подсветка выбранного элемента списка */
+.list-action-item--active {
+  background: #e5e7ff;      /* мягкий сиреневый хайлайт */
+  font-weight: 600;
+}

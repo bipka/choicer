@@ -1,0 +1,53 @@
+html,
+body {
+  height: 100%;
+}
+
+.page__content {
+  background: #050509;
+}
+
+.choicer-onsen {
+  padding: 8px;
+}
+
+.choicer-onsen__columns {
+  display: flex;
+  gap: 8px;
+}
+
+.choicer-onsen__column {
+  flex: 1;
+  min-width: 0;
+}
+
+.choicer-onsen__column-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 8px 0;
+  opacity: 0.8;
+}
+
+.choicer-onsen__toolbar-subtitle {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.choicer-onsen__header-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+.choicer-onsen__hint {
+  font-size: 12px;
+  opacity: 0.7;
+  padding: 4px 8px;
+}
+
+.choicer-onsen__listitem-selected {
+  background-color: rgba(255, 79, 191, 0.16);
+}
