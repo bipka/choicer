@@ -1,5 +1,3 @@
-// src/components/ThemesList.js
-
 import React, { useState } from 'react';
 import * as Ons from 'react-onsenui';
 import ons from 'onsenui';
@@ -7,7 +5,7 @@ import ons from 'onsenui';
 import { useData } from '../DataManipulation.js';
 import EditDelItem from './EditDelItem';
 
-export default function ThemesList({ nav }) {
+export default function ThemesList({ nav, onOpenMenu }) {
   const { data, add, move } = useData();
   const [selectedId, setSelectedId] = useState(null);
 
@@ -29,10 +27,17 @@ export default function ThemesList({ nav }) {
 
   const renderToolbar = () => (
     <Ons.Toolbar>
+      <div className="left">
+        <Ons.ToolbarButton onClick={onOpenMenu}>
+          <Ons.Icon icon="md-menu" />
+        </Ons.ToolbarButton>
+      </div>
+
       <div className="center">Категории</div>
+
       <div className="right">
         <Ons.ToolbarButton
-          onTap={() => {
+          onClick={() => {
             ons.notification
               .prompt('Напишите название категории:', {
                 title: '',
@@ -54,10 +59,7 @@ export default function ThemesList({ nav }) {
 
   return (
     <Ons.Page renderToolbar={renderToolbar}>
-      <Ons.List
-        dataSource={sortedThemes}
-        renderRow={renderRow}
-      />
+      <Ons.List dataSource={sortedThemes} renderRow={renderRow} />
     </Ons.Page>
   );
 }

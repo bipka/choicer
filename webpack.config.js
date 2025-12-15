@@ -1,19 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
-  mode: 'development', // можно переключить на 'production' для релиза
+  entry: {
+    main: './src/index.js',
+    sw: './src/sw.js'
+  },
+  mode: 'development',
 
   output: {
-    filename: 'main.js',
+    filename: '[name].js',              // main.js и sw.js
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',                    // важно для корректных путей в PWA
     clean: true
   },
 
   resolve: {
     alias: {
-      // React всегда берём из www/node_modules
       react: path.resolve(__dirname, '../node_modules/react'),
       'react-dom': path.resolve(__dirname, '../node_modules/react-dom')
     }
@@ -24,9 +28,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: { loader: 'babel-loader' }
       },
       {
         test: /\.css$/,
@@ -42,6 +44,16 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+
+    // Копируем manifest + icons + splash в dist
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'src/pwa/favicon.ico'), to: 'favicon.ico' },
+        { from: path.resolve(__dirname, 'src/pwa/manifest.webmanifest'), to: 'manifest.webmanifest' },
+        { from: path.resolve(__dirname, 'src/pwa/icons'), to: 'icons' },
+        { from: path.resolve(__dirname, 'src/pwa/splash'), to: 'splash' }
+      ]
     })
   ]
 };

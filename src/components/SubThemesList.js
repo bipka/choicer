@@ -1,5 +1,3 @@
-// src/components/SubThemesList.js
-
 import React, { useState } from 'react';
 import * as Ons from 'react-onsenui';
 import ons from 'onsenui';
@@ -7,7 +5,21 @@ import ons from 'onsenui';
 import { useData } from '../DataManipulation.js';
 import EditDelItem from './EditDelItem';
 
-export default function SubThemesList({ themeId, nav }) {
+const getSubthemeLabelByTheme = (themeTitle) => {
+  if (!themeTitle) return 'подтемы';
+  const t = themeTitle.toLowerCase();
+
+  if (t.includes('фильм')) return 'фильма';
+  if (t.includes('подкаст')) return 'подкаста';
+  if (t.includes('клип')) return 'клипа';
+  if (t.includes('дорам')) return 'дорамы';
+  if (t.includes('аниме')) return 'аниме';
+  if (t.includes('сериал')) return 'сериала';
+
+  return 'подтемы';
+};
+
+export default function SubThemesList({ themeId, nav, onOpenMenu }) {
   const { data, add, move } = useData();
   const [selectedId, setSelectedId] = useState(null);
 
@@ -16,6 +28,7 @@ export default function SubThemesList({ themeId, nav }) {
     .sort((a, b) => a.ord - b.ord);
 
   const themeFound = data.themes.find(t => t.id === themeId);
+
   const ellipsisLen = 20;
   const themeTitle =
     themeFound && themeFound.title.length > ellipsisLen
@@ -23,6 +36,8 @@ export default function SubThemesList({ themeId, nav }) {
       : themeFound
       ? themeFound.title
       : '';
+
+  const itemWord = getSubthemeLabelByTheme(themeFound?.title || '');
 
   const renderRow = (itm, ndx) => (
     <EditDelItem
@@ -42,15 +57,20 @@ export default function SubThemesList({ themeId, nav }) {
 
   const renderToolbar = () => (
     <Ons.Toolbar>
-      <div className="left">
+      <div className="left" style={{ display: 'flex', alignItems: 'center' }}>
+        <Ons.ToolbarButton onClick={onOpenMenu}>
+          <Ons.Icon icon="md-menu" />
+        </Ons.ToolbarButton>
         <Ons.BackButton>Назад</Ons.BackButton>
       </div>
+
       <div className="center">{themeTitle}</div>
+
       <div className="right">
         <Ons.ToolbarButton
-          onTap={() => {
+          onClick={() => {
             ons.notification
-              .prompt('Напишите название :', {
+              .prompt(`Напишите категорию ${itemWord}:`, {
                 title: '',
                 cancelable: true,
                 buttonLabels: ['Отмена', 'ОК']
@@ -68,10 +88,7 @@ export default function SubThemesList({ themeId, nav }) {
 
   return (
     <Ons.Page renderToolbar={renderToolbar}>
-      <Ons.List
-        dataSource={choicedSubthemes}
-        renderRow={renderRow}
-      />
+      <Ons.List dataSource={choicedSubthemes} renderRow={renderRow} />
     </Ons.Page>
   );
 }
